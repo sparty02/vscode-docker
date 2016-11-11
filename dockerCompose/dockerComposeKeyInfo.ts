@@ -183,8 +183,8 @@ export var DOCKER_COMPOSE_KEY_INFO: KeyInfo = Object.assign({}, DOCKER_COMPOSE_V
     'services': (
         "Specify the set of services that your app is composed of."
     ),
-     // TODO: There is now a top-level and service-level volumes/networks setting which conflict.
-     // This will be resolved when we add completion that understands file position context.
+    // TODO: There is now a top-level and service-level volumes/networks setting which conflict.
+    // This will be resolved when we add completion that understands file position context.
     'networks': (
         "Specifies the networks to be created as part of your app. This is analogous to running `docker network create`."
     ),
@@ -289,4 +289,20 @@ export var DOCKER_COMPOSE_KEY_INFO: KeyInfo = Object.assign({}, DOCKER_COMPOSE_V
 export var DOCKER_COMPOSE_V2_KEY_INFO: KeyInfo = Object.assign({}, DOCKER_COMPOSE_KEY_INFO);
 ["log_driver", "log_opt", "net"].forEach((prop) => {
     delete DOCKER_COMPOSE_V2_KEY_INFO[prop];
+});
+
+// Create a v2.1 key set by addint the new properties introduced in v2.1.
+export var DOCKER_COMPOSE_V2_1_KEY_INFO: KeyInfo = Object.assign({}, DOCKER_COMPOSE_V2_KEY_INFO, {
+    'group_add': (
+        "Specify additional groups (by name or number) which the user inside the container will be a member of. Groups must exist in both the container and the host system to be added."
+    ),
+    'oom_score_adj': (
+        "Tune host's OOM preferences (-1000 to 1000), as with the `--oom-score-adj int` option for docker run."
+    ),
+    'internal': (
+        "By default, Docker also connects a bridge network to it to provide external connectivity. If you want to create an externally isolated overlay network, you can set this option to true."
+    ),
+    'enable_ipv6': (
+        "If IPv6 addressing is desired, the com.docker.network.enable_ipv6 driver option must be set to true."
+    )
 });

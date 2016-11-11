@@ -6,7 +6,7 @@
 
 import {TextDocument, Position, CancellationToken, CompletionItem, CompletionItemProvider, CompletionItemKind, Uri} from 'vscode';
 import helper = require('../helpers/suggestSupportHelper');
-import {DOCKER_COMPOSE_V1_KEY_INFO, DOCKER_COMPOSE_V2_KEY_INFO} from './dockerComposeKeyInfo';
+import {DOCKER_COMPOSE_V1_KEY_INFO, DOCKER_COMPOSE_V2_KEY_INFO, DOCKER_COMPOSE_V2_1_KEY_INFO} from './dockerComposeKeyInfo';
 import hub = require('../dockerHubApi');
 
 export class DockerComposeCompletionItemProvider implements CompletionItemProvider {
@@ -65,6 +65,9 @@ export class DockerComposeCompletionItemProvider implements CompletionItemProvid
         switch (version) {
             case '2':
                 keys = DOCKER_COMPOSE_V2_KEY_INFO;
+                break;
+            case '2.1':
+                keys = DOCKER_COMPOSE_V2_1_KEY_INFO;
                 break;
             default:
                 keys = DOCKER_COMPOSE_V1_KEY_INFO;
